@@ -1,25 +1,63 @@
-# AppAutomation
-This project is a mobile application automation framework built using JavaScript, WebdriverIO, Appium, and BrowserStack, following the BDD (Behavior-Driven Development) approach with Cucumber.js. 
-📱 Mobile App Automation Framework
+# node-appium-app-browserstack
 
-🔧 Tech Stack
+This repository demonstrates how to run Appium NodeJS tests on BrowserStack App Automate.
 
-JavaScript – Programming language
+## Setup
 
-WebdriverIO – Test automation framework
+### Requirements
 
-Appium – Mobile automation tool
+1. Node.js
 
-BrowserStack – Cloud device testing platform
+    - If not installed, install Node.js from [here](https://nodejs.org/en/download/)
 
-Cucumber.js – BDD framework with Gherkin syntax
+    - Ensure you have node & npm installed by running `node -v` & `npm -v`
 
-✅ Features
+### Install the dependencies
 
-Cross-platform mobile automation (Android/iOS)
+To install the dependencies run the following command in the project's base directory :
 
-Executions on real devices using BrowserStack
+```
+- Open `Android` or in `ios` folder
 
-Scalable test structure with BDD support
+- Run `npm install`
+```
 
-Easy integration and maintainable test scripts
+## Getting Started
+
+Getting Started with Appium tests in NodeJS on BrowserStack couldn't be easier!
+
+### Run your first test :
+
+Open `Android` or in `ios` folder
+
+- If you have uploaded your app then add the app id to the `browserstack.yml` config file, or you can directly specify the path to your app in the `browserstack.yml` file.
+
+- Run `npm run sample-test`
+
+- You can access the test execution results, and debugging information such as video recording, network logs on [App Automate dashboard](https://app-automate.browserstack.com/dashboard)
+
+---
+
+### **Use Local testing for apps that access resources hosted in development or testing environments :**
+
+Open `Android` or in `ios` folder
+
+- Ensure that `browserstackLocal` capability is set to `true` in the `browserstack.yml` file.
+
+- If you have uploaded your app then add the app id to the `browserstack.yml` config file, or you can directly specify the path to your app in the `browserstack.yml` file.
+
+- Run `npm run sample-local-test`
+
+- You can access the test execution results, and debugging information such as video recording, network logs on [App Automate dashboard](https://app-automate.browserstack.com/dashboard)
+
+## Integration with other NodeJS frameworks
+
+For other NodeJS frameworks samples, refer to following repositories :
+
+- [WebdriverIO](https://github.com/browserstack/webdriverio-appium-app-browserstack)
+
+Note: For other test frameworks supported by App-Automate refer our [Developer documentation](https://www.browserstack.com/docs/)
+
+## Getting Help
+
+If you are running into any issues or have any queries, please check [Browserstack Support page](https://www.browserstack.com/support/app-automate) or [get in touch with us](https://www.browserstack.com/contact?ref=help).
