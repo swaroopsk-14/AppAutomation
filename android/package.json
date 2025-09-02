@@ -5,11 +5,14 @@
   "description": "Appium android examples for NodeJS and BrowserStack App Automate",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/browserstack/node-appium-app-browserstack.git"
+    "url": "git+https://github.com/swaroopsk-14/AppAutomation.git"
   },
   "scripts": {
     "sample-test": "browserstack-node-sdk node test/sample_test.js",
     "sample-local-test": "browserstack-node-sdk node test/sample_local_test.js",
+    "demo-test": "browserstack-node-sdk node test/demo_test.js",
+    "bdd-test": "cucumber-js features --require features/step_definitions/steps.js",
+    "bdd-test-bs": "cucumber-js features --require features/step_definitions/steps.js",
     "postinstall": "npm update browserstack-node-sdk"
   },
   "keywords": [
@@ -22,12 +25,17 @@
   },
   "homepage": "https://github.com/browserstack/node-appium-app-browserstack#readme",
   "dependencies": {
-    "selenium-webdriver": "^4.10.0"
+    "appium": "^2.19.0",
+    "appium-uiautomator2-driver": "^3.0.0",
+    "dotenv": "^17.2.1",
+    "selenium-webdriver": "^4.10.0",
+    "webdriverio": "^8.37.0"
   },
   "engines": {
-    "node": "^6"
+    "node": ">=16"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^9.2.2",
     "browserstack-node-sdk": "latest"
   }
 }
