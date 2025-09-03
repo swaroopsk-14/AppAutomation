@@ -100,3 +100,88 @@ When(/^I select "([^"]*)" from the list$/, { timeout: 20000 }, async function (l
     await this.demoPage.selectLanguageFromList(language);
     await this.driver.pause(3000);
 });
+
+Then(/^I verify the Wikipedia header logo$/, { timeout: 20000 }, async function (){
+    await this.demoPage.verifyWikiHeaderLogo();
+    await this.driver.pause(3000);
+});
+
+Then(/^I verify the Eclipse button$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.verifyEclipseButton();
+    await this.driver.pause(3000);
+});
+
+Then(/^I verify the subheading "([^"]*)" and todays date$/,{ timeout: 20000 }, async function (subHeaderName){
+    await this.demoPage.verifySubHeadingAndTodaysDate(subHeaderName);
+    await this.driver.pause(3000);
+});
+
+Then(/^I verify the In the news eclipse button$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.verifyInTheNewsEclipseButton();
+    await this.driver.pause(3000);
+});
+
+Then(/^I verify two news article cards$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.verifyTwoNewArticles();
+    await this.driver.pause(3000);
+});
+
+Then(/^I verify the Featured article eclipse button and image$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.verifyFeatureArticleEclipseButtonAndImage();
+    await this.driver.pause(3000);
+});
+
+Then(/^I verify the Explore button at the bottom$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.verifyExploreButton();
+    await this.driver.pause(3000);
+});
+
+Then(/^I verify the Reading list, History and Navigate to browser buttons at the bottom$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.verifyReadnigListHistoryNavigatingButtons();
+    await this.driver.pause(3000);
+});
+
+When(/^I clicked on a news article$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.clickOnNewsArticle();
+    await this.driver.pause(3000);
+});
+
+When(/^I click on more options icon$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.clickOnMoreOptionsIcon();
+    await this.driver.pause(3000);
+});
+
+When(/^I click on Add to Reading List option$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.clickOnAddToReadingListOption();
+    await this.driver.pause(3000);
+});
+
+When(/^I enter reading list name as "([^"]*)"$/,{ timeout: 20000 }, async function (listName){
+    await this.demoPage.enterReadingListName(listName);
+    await this.driver.pause(3000);
+});
+
+When(/^I click on OK button$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.clickOnOkButton();
+    await this.driver.pause(3000);
+});
+
+When(/^I click on Ok button of Got it popup$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.clickOnGotItOkButton();
+    await this.driver.pause(3000);
+});
+
+When(/^I navigate to Reading list section$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.navigateToReadingListSection();
+    await this.driver.pause(3000);
+});
+
+Then(/^I verify the news article is added to the reading list$/,{ timeout: 20000 }, async function (){
+    await this.demoPage.verifyNewsArticleIsAddedToReadingList();
+    await this.driver.pause(3000);
+});
+
+
+
+
+ 
