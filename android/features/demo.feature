@@ -1,7 +1,19 @@
-Feature: Demo BrowserStack Appium Tests
+@mobile @android @wikipedia @smoke @critical
+Feature: Wikipedia Android App - Core Test Scenarios
+  """
+  Core test suite for Wikipedia Android application
+  focusing on main functionality with working step definitions
+  """
 
-  Scenario: Verify home page elements
+  Background:
     Given the app is launched
+
+  @smoke @ui @homepage @critical
+  Scenario: Verify all homepage elements are displayed correctly
+    """
+    Critical smoke test to ensure all main homepage elements are visible
+    and functional. This validates the core app experience.
+    """
     Then I verify the Wikipedia header logo
     And I verify the Eclipse button
     And I verify the subheading "In the news" and todays date
@@ -12,16 +24,22 @@ Feature: Demo BrowserStack Appium Tests
     And I verify the Explore button at the bottom
     And I verify the Reading list, History and Navigate to browser buttons at the bottom
 
-  Scenario: Verify if user able to change the language
-    Given the app is launched
+  @regression @language @settings
+  Scenario: Verify language change functionality
+    """
+    Test language selection functionality
+    """
     When I clicked on eclipse icon
     And I navigate to setting section
     And I click on Change language option
     Then I enter "German" in search box
     And I select "German" from the list
 
-  Scenario: Verify if user able to Move to watchlist a news article
-    Given the app is launched
+  @regression @reading-list @content @critical
+  Scenario: Verify reading list functionality
+    """
+    Test reading list feature with article addition
+    """
     When I clicked on a news article
     And I click on more options icon
     And I click on Add to Reading List option

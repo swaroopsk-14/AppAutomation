@@ -1,41 +1,151 @@
 {
-  "name": "node-appium-app-browserstack",
-  "version": "0.1.0",
-  "readme": "NodeJS Integration with [BrowserStack](https://www.browserstack.com)",
-  "description": "Appium android examples for NodeJS and BrowserStack App Automate",
+  "name": "optimized-mobile-automation-framework",
+  "version": "2.0.0",
+  "description": "Optimized Mobile Automation Framework for Android with BrowserStack integration, featuring performance monitoring, parallel execution, and best practices",
+  "main": "test/sample_test.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/swaroopsk-14/AppAutomation.git"
   },
+  "author": "Swaroop K",
+  "license": "SIT",
+  "bugs": {
+    "url": "https://github.com/swaroopsk-14/AppAutomation/issues"
+  },
+  "homepage": "https://github.com/swaroopsk-14/AppAutomation#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
-    "sample-test": "browserstack-node-sdk node test/sample_test.js",
-    "sample-local-test": "browserstack-node-sdk node test/sample_local_test.js",
-    "demo-test": "browserstack-node-sdk node test/demo_test.js",
-    "bdd-test": "cucumber-js features --require features/step_definitions/steps.js",
-    "bdd-test-bs": "cucumber-js features --require features/step_definitions/steps.js",
-    "postinstall": "npm update browserstack-node-sdk"
+    "clean": "rm -rf screenshots/*.png reports/ node_modules/.cache",
+    "setup": "npm install && npm run postinstall",
+    "postinstall": "npm update browserstack-node-sdk",
+
+    "test:sample": "node test/sample_test.js",
+    "test:sample-bs": "cross-env BROWSERSTACK=true node test/sample_test.js",
+    "test:local": "node test/sample_local_test.js",
+    "test:local-bs": "cross-env BROWSERSTACK=true node test/sample_local_test.js",
+
+    "test:bdd": "cucumber-js features --require features/step_definitions/steps.js --format progress",
+    "test:bdd-bs": "cross-env BROWSERSTACK=true cucumber-js features --require features/step_definitions/steps.js --format progress",
+    "test:bdd-parallel": "cucumber-js features --require features/step_definitions/steps.js --format progress --parallel 2",
+
+    "test:demo-bs": "cross-env BROWSERSTACK=true cucumber-js features/demo.feature --require features/step_definitions/steps.js --format progress",
+    "test:demo-bs-html": "cross-env BROWSERSTACK=true cucumber-js features/demo.feature --require features/step_definitions/steps.js --format html:reports/demo-bs-report.html",
+    "test:demo-bs-json": "cross-env BROWSERSTACK=true cucumber-js features/demo.feature --require features/step_definitions/steps.js --format json:reports/demo-bs-report.json",
+    "test:demo-bs-smoke": "cross-env BROWSERSTACK=true cucumber-js features/demo.feature --require features/step_definitions/steps.js --format progress --tags '@smoke'",
+    "test:demo-bs-critical": "cross-env BROWSERSTACK=true cucumber-js features/demo.feature --require features/step_definitions/steps.js --format progress --tags '@critical'",
+
+    "test:bdd-json": "cucumber-js features --require features/step_definitions/steps.js --format json:reports/cucumber-report.json",
+    "test:bdd-html": "cucumber-js features --require features/step_definitions/steps.js --format html:reports/cucumber-report.html",
+    "test:bdd-junit": "cucumber-js features --require features/step_definitions/steps.js --format junit:reports/junit-report.xml",
+
+    "test:smoke": "npm run test:bdd -- --tags '@smoke'",
+    "test:regression": "npm run test:bdd -- --tags '@regression'",
+    "test:critical": "npm run test:bdd -- --tags '@critical'",
+
+    "test:all": "npm run test:sample && npm run test:local && npm run test:bdd",
+    "test:all-bs": "npm run test:sample-bs && npm run test:local-bs && npm run test:bdd-bs",
+    "test:demo-all": "npm run test:demo-bs && npm run test:demo-bs-html && npm run test:demo-bs-json",
+
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix",
+    "format": "prettier --write '**/*.{js,json,md}'",
+
+    "report:merge": "allure generate reports/allure-results --clean && allure open",
+    "report:clean": "rm -rf reports/ screenshots/*.png",
+
+    "performance": "node scripts/performance-monitor.js",
+    "health-check": "node scripts/health-check.js",
+
+    "ci": "npm run lint && npm run test:all-bs && npm run report:merge"
   },
   "keywords": [
-    "browserstack",
+    "mobile-automation",
     "appium",
-    "tests"
+    "browserstack",
+    "android",
+    "cucumber",
+    "bdd",
+    "test-automation",
+    "performance-monitoring",
+    "parallel-execution",
+    "ci-cd"
   ],
-  "bugs": {
-    "url": "https://github.com/browserstack/node-appium-app-browserstack/issues"
-  },
-  "homepage": "https://github.com/browserstack/node-appium-app-browserstack#readme",
   "dependencies": {
-    "appium": "^2.19.0",
+    "appium": "^2.5.1",
     "appium-uiautomator2-driver": "^3.0.0",
-    "dotenv": "^17.2.1",
-    "selenium-webdriver": "^4.10.0",
-    "webdriverio": "^8.37.0"
-  },
-  "engines": {
-    "node": ">=16"
+    "webdriverio": "^8.38.1",
+    "selenium-webdriver": "^4.20.0",
+    "dotenv": "^16.4.5",
+    "@cucumber/cucumber": "^10.8.0",
+    "browserstack-node-sdk": "latest",
+    "winston": "^3.13.0",
+    "chalk": "^5.3.0",
+    "cli-table3": "^0.6.5",
+    "fs-extra": "^11.2.0",
+    "path": "^0.12.7",
+    "performance-now": "^2.1.0"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "^9.2.2",
-    "browserstack-node-sdk": "latest"
-  }
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^3.3.0",
+    "allure-cucumberjs": "^2.15.0",
+    "cucumber-html-reporter": "^7.1.1",
+    "jasmine": "^5.1.0",
+    "supertest": "^6.3.4",
+    "cross-env": "^7.0.3"
+  },
+  "config": {
+    "automation": {
+      "framework": "cucumber-appium",
+      "platform": "android",
+      "parallel": true,
+      "maxInstances": 5,
+      "retry": {
+        "count": 3,
+        "delay": 1000
+      },
+      "timeouts": {
+        "elementWait": 15000,
+        "pageLoad": 30000,
+        "script": 60000
+      }
+    },
+    "reporting": {
+      "screenshots": true,
+      "videos": true,
+      "logs": true,
+      "performance": true
+    }
+  },
+  "directories": {
+    "test": "test",
+    "features": "features",
+    "reports": "reports",
+    "screenshots": "screenshots",
+    "scripts": "scripts"
+  },
+  "files": [
+    "test/",
+    "features/",
+    "pages/",
+    "capabilities.js",
+    "objectRepo/",
+    "README.md"
+  ],
+  "preferGlobal": false,
+  "private": false,
+  "contributors": [
+    {
+      "name": "Swaroop Kulkarni",
+      "email": "swaroopsk@example.com",
+      "url": "https://github.com/swaroopsk-14"
+    }
+  ]
 }
